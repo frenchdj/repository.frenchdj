@@ -99,14 +99,14 @@ def makeRequest(url, headers=None):
                 xbmc.executebuiltin("XBMC.Notification(FDJ.hd, server error. - "+str(e.reason)+",10000,"+icon+")")
 
 def SKindex():
-    addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'https://i.imgur.com/SCi8X1m.png',FANART,'','','','')
+    addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR] 2.1','','','')
     getData(Base,FANART)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def getSources():
         try:
             if os.path.exists(favorites) == True:
-                addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'https://i.imgur.com/SCi8X1m.png' , os.path.join(home, 'fanart.gif'),FANART,'','','','')
+                addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png' , os.path.join(home, 'fanart.gif'),FANART,'','','','')
             if os.path.exists(fdj_source)==True:
                 sources = json.loads(open(fdj_source,"r").read())
                 #print 'sources',sources
