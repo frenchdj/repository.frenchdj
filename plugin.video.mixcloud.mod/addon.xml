@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.mixcloud.mod"
+       name="Mixcloud Mod"
+       version="1.0"
+       provider-name="frenchdj">
+  <requires>
+    <import addon="xbmc.python" version="2.14.0"/>
+    <import addon="script.module.simplejson" version="2.0.10"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+     <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">MixCloud Fork Addon</summary>
+    <description lang="en">Mixcloud is re-thinking radio. Listen to great radio shows, Podcasts and DJ mix sets on-demand
+This plugin is a fork from jackyNIX Mixcloud addon, with Dj French main sets and some bonus channels from Mixcloud.
+It is a audio addon, just had to change to video to acomodate him to be a part of FDJ.HD.</description>
+    <platform>all</platform>
+    <language></language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+  </extension>
+</addon>                       
