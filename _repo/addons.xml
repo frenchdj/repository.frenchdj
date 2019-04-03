@@ -2,7 +2,7 @@
 <addons>
 <addon id="plugin.video.fdj.hd"
        name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
-       version="2.1"
+       version="2.2"
        provider-name="frenchdj">
  <requires>
 	<import addon="xbmc.python" version="2.1.0"/>

@@ -50,6 +50,7 @@ icon = os.path.join(home, 'icon.png')
 FANART = os.path.join(home, 'fanart.gif')
 fdj_source = os.path.join(profile, 'fdj_source')
 functions_dir = profile
+urlBaseBP = "https://www.beatport.com"
 
 favoritesdb = os.path.join(profile, 'favorites.db')
 
@@ -60,6 +61,91 @@ else: FAV = []
 if os.path.exists(fdj_source)==True:
     SOURCES = open(fdj_source).read()
 else: SOURCES = []
+
+def index():
+	addDir(translation(30601), "", "beatportMain", pic+'beatport.png')
+	xbmcplugin.endOfDirectory(pluginhandle)
+	
+def beatportMain():
+	content = cache('https://pro.beatport.com', 30)
+	content = content[content.find('<div class="mobile-menu-body">')+1:]
+	content = content[:content.find('<!-- End Mobile Touch Menu -->')]
+	match = re.compile('<a href="(.*?)" class="(.*?)" data-name=".+?">(.*?)</a>', re.DOTALL).findall(content)
+	allTitle = translation(30635)
+	addAutoPlayDir(allTitle, urlBaseBP+"/top-100", "listBeatportVideos", pic+'beatport.png', "", "browse")
+	for genreURL, genreTYPE, genreTITLE in match:
+		topUrl = urlBaseBP+genreURL+'/top-100'
+		title = cleanTitle(genreTITLE)
+		addAutoPlayDir(title, topUrl, "listBeatportVideos", pic+'beatport.png', "", "browse")
+	xbmcplugin.endOfDirectory(pluginhandle)
+	if forceView:
+		xbmc.executebuiltin('Container.SetViewMode('+viewIDGenres+')')
+	
+def listBeatportVideos(type, url, limit):
+	musicVideos = []
+	count = 0
+	if type == "play":
+		playlist = xbmc.PlayList(1)
+		playlist.clear()
+	content = cache(url, 1)
+	spl = content.split('bucket-item ec-item track')
+	for i in range(1,len(spl),1):
+		entry = spl[i]
+		artist = re.compile('data-artist=".+?">(.*?)</a>', re.DOTALL).findall(entry)[0]
+		artist = cleanTitle(artist)
+		song = re.compile('<span class="buk-track-primary-title" title=".+?">(.*?)</span>', re.DOTALL).findall(entry)[0]
+		remix = re.compile('<span class="buk-track-remixed">(.*?)</span>', re.DOTALL).findall(entry)
+		if "(original mix)" in song.lower():
+			song = song.lower().split('(original mix)')[0]
+		song = cleanTitle(song)
+		if "(feat." in song.lower() and " feat." in song.lower():
+			song = song.split(')')[0]+')'
+		elif not "(feat." in song.lower() and " feat." in song.lower():
+			firstSong = song.lower().split(' feat.')[0]
+			secondSong = song.lower().split(' feat.')[1]
+			song = firstSong+' (feat.'+secondSong+')'
+		if remix and not "original" in remix[0].lower():
+			newRemix = remix[0].replace('[', '').replace(']', '')
+			song += ' ['+cleanTitle(newRemix)+']'
+		firstTitle = artist+" - "+song
+		try:
+			oldDate = re.compile('<p class="buk-track-released">(.*?)</p>', re.DOTALL).findall(entry)[0]
+			convert = time.strptime(oldDate,'%Y-%m-%d')
+			newDate = time.strftime('%d.%m.%Y',convert)
+			completeTitle = firstTitle+'   [COLOR deepskyblue]['+str(newDate)+'][/COLOR]'
+		except: completeTitle = firstTitle
+		try:
+			thumb = re.compile('data-src="(http.*?.jpg)"', re.DOTALL).findall(entry)[0]
+			thumb = thumb.split('image_size')[0]+'image/'+thumb.split('/')[-1]
+			#thumb = thumb.replace("/30x30/","/500x500/").replace("/60x60/","/500x500/").replace("/95x95/","/500x500/").replace("/250x250/","/500x500/")
+		except: thumb = pic+'noimage.png'
+		filtered = False
+		for snippet in blackList:
+			if snippet.strip().lower() and snippet.strip().lower() in firstTitle.lower():
+				filtered = True
+		if filtered:
+			continue
+		if type == "play":
+			url = "plugin://"+addon.getAddonInfo('id')+"/?url="+quote_plus(firstTitle.replace(" - ", " "))+"&mode=playYTByTitle"
+		else:
+			url = firstTitle
+		musicVideos.append([firstTitle, completeTitle, url, thumb])
+	if type == "browse":
+		for firstTitle, completeTitle, url, thumb in musicVideos:
+			count += 1
+			name = '[COLOR chartreuse]'+str(count)+' •  [/COLOR]'+completeTitle
+			addLink(name, url.replace(" - ", " "), "playYTByTitle", thumb)
+		xbmcplugin.endOfDirectory(pluginhandle)
+		if forceView:
+			xbmc.executebuiltin('Container.SetViewMode('+viewIDVideos+')')
+	else:
+		if limit:
+			musicVideos = musicVideos[:int(limit)]
+		random.shuffle(musicVideos)
+		for firstTitle, completeTitle, url, thumb in musicVideos:
+			listitem = xbmcgui.ListItem(firstTitle, thumbnailImage=thumb)
+			playlist.add(url, listitem)
+		xbmc.Player().play(playlist)
 
 def addon_log(string):
     if debug == 'true':
@@ -830,8 +916,6 @@ def pluginquerybyJSON(url,give_me_result=None,playlist=False):
                     #xbmc.executebuiltin("Container.SetViewMode(500)")
                     if i['type'] and i['type'] == 'tvshow' :
                         xbmcplugin.setContent(int(sys.argv[1]), 'tvshows')
-                    elif i['episode'] > 0 :
-                        xbmcplugin.setContent(int(sys.argv[1]), 'episodes')
             else:
                 addDir(name,url,11,thumbnail,fanart,'','','','',allinfo=meta)
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
@@ -1048,6 +1132,12 @@ if mode==None:
     #addon_log("getSources")
     #getSources()
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
+	
+	
+if mode == 'beatportMain':
+	beatportMain()
+elif mode == 'listBeatportVideos':
+	listBeatportVideos(type, url, limit)
 
 elif mode==1:
     addon_log("getData")
