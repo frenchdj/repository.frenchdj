@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
+	<category label="30000">
+		<setting label="30102" type="text" id="blacklist" default=""/>
+		<setting type="sep"/>
+		<setting label="30261" type="lsep"/>
+		<setting label="30103" type="folder" id="cacheDir" default=""/>
+		<setting label="30104" type="slider" id="cacheLong" default="1" range="1,1,21" option="int"/>
+		<setting type="sep"/>
+		<setting label="30262" type="lsep"/>
+		<setting label="30105" type="bool" id="showInfo" default="true"/>
+		<setting label="30106" type="enum" id="infoType" enable="eq(-1,true)" values="VideoOSD|Notification" default="1"/>
+		<setting label="30107" type="number" id="infoDelay" enable="eq(-2,true)" default="12"/>
+		<setting label="30108" type="number" id="infoDuration" enable="eq(-3,true)" default="12"/>
+		<setting type="sep"/>
+		<setting label="30263" type="lsep"/>
+		<setting label="30109" type="bool" id="useThumbAsFanart" default="true"/>
+	</category>
 	<category label="30002">
 		<setting label="30114" type="bool" id="spotifyForceCountry" default="false"/>
 		<setting label="30115" type="text" id="spotifyCountry" enable="eq(-1,true)" default=""/>
