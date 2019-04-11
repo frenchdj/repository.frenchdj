@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="plugin.video.beatport.mod" name="Beatport Mod" version="1.0" provider-name="frenchdj">
+	<requires>
+		<import addon="xbmc.python" version="2.24.0"/>
+		<import addon="plugin.video.youtube" version="6.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Play Music via Youtube</summary>
+		<description lang="en">Choose Music from beatport and play it via Youtube.
+This plugin is a fork from the Beatport part of realvito spotitube addon.
+Thanks to Twilight for helping me with the Beatport categories.</description>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+		<website></website>
+		<email></email>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+		<news>
+		</news>
+	</extension>
+</addon>
+
 <addon id="plugin.video.fdj.hd"
        name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
        version="2.2"

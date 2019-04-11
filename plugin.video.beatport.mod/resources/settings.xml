@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="30003">
+		<setting label="30270" type="lsep"/>
+		<setting label="30116" type="bool" id="forceView" default="false"/>
+		<setting label="30117" type="number" id="viewIDGenres" enable="eq(-1,true)" default="500"/>
+		<setting label="30118" type="number" id="viewIDPlaylists" enable="eq(-2,true)" default="500"/>
+		<setting label="30119" type="number" id="viewIDVideos" enable="eq(-3,true)" default="500"/>
+	</category>
+</settings>
