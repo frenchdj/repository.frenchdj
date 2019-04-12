@@ -28,8 +28,62 @@ msgstr ""
 #strings start
 # SETTINGS-CATEGORIES
 
+msgctxt "#30000"
+msgid "General"
+msgstr ""
+
 msgctxt "#30003"
 msgid "View"
+msgstr ""
+
+
+#empty strings from id 30004 to 30100
+# SETTINGS-BUTTONS
+
+msgctxt "#30102"
+msgid "[COLOR orangered]Blacklist filter[/COLOR] (seperated by ',')"
+msgstr ""
+
+msgctxt "#30103"
+msgid "     Cache Directory"
+msgstr ""
+
+msgctxt "#30104"
+msgid "     Cache Storage for single File (in Days)"
+msgstr ""
+
+msgctxt "#30105"
+msgid "     Show Title-Info on Video-playback"
+msgstr ""
+
+msgctxt "#30106"
+msgid "     Type"
+msgstr ""
+
+msgctxt "#30107"
+msgid "     Delay in Seconds"
+msgstr ""
+
+msgctxt "#30108"
+msgid "     Duration in Seconds"
+msgstr ""
+
+msgctxt "#30109"
+msgid "     Use Addon-Fanart as Background"
+msgstr ""
+
+# SETTINGS-TITLES
+
+msgctxt "#30261"
+msgid "[B][COLOR ff0099ff]CACHE[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30262"
+msgid "[B][COLOR ff0099ff]TITLEINFO[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30263"
+msgid "[B][COLOR ff0099ff]FANART[/COLOR][/B]"
 msgstr ""
 
 #empty strings from id 30004 to 30100
@@ -56,7 +110,7 @@ msgid "[COLOR lime]. [COLOR white]Beatport[/COLOR]"
 msgstr ""
 
 msgctxt "#30635"
-msgid "Top 100"
+msgid "[COLOR lime][B]BEATPORT [COLOR white]- [COLOR deepskyblue]Top 100[COLOR white] :[/B][/COLOR]"
 msgstr ""
 
 msgctxt "#30801"

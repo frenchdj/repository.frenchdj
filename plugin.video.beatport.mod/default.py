@@ -140,7 +140,7 @@ def beatportMain():
     content = content[:content.find('<!-- End Mobile Touch Menu -->')]
     match = re.compile('<a href="(.*?)" class="(.*?)" data-name=".+?">(.*?)</a>', re.DOTALL).findall(content)
     allTitle = translation(30635)
-    addAutoPlayDir(allTitle, urlBaseBP + "/top-100", "listBeatportVideos", pic + 'beatport.png', "", "browse")
+    addAutoPlayDir(allTitle, urlBaseBP + "", "", pic + 'beatport.png', "", "browse")
     for genreURL, genreTYPE, genreTITLE in match:
         topUrl = urlBaseBP + genreURL + '/top-100'
         title = cleanTitle(genreTITLE).replace('Electronica / Downtempo', 'Electronica').replace('Breaks', 'Breakbeat').replace('Hardcore / Hard Techno', 'Hard Techno ').replace('Hip-Hop / R&B','Rap').replace('Melodic House & Techno', 'Melodic Tech').replace('Minimal / Deep Tech', 'Minimal').replace('Trap / Future Bass', 'Trap').replace('Hard Dance', 'Hardcore').replace('Indie Dance / Nu Disco', 'Indie Dance').replace('Psy-Trance', 'Psy Trance')
