@@ -72,7 +72,7 @@ It is a audio addon, just had to change to video to acomodate him to be a part o
   </extension>
 </addon>
 
-<addon id="plugin.video.spotify.mod" name="Spotify Mod" version="1.2" provider-name="frenchdj">
+<addon id="plugin.video.spotify.mod" name="Spotify Mod" version="1.3" provider-name="frenchdj">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="plugin.video.youtube" version="6.1.0"/>

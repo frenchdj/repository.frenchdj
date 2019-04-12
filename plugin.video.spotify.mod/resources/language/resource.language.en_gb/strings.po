@@ -36,6 +36,10 @@ msgctxt "#30002"
 msgid "Services"
 msgstr ""
 
+msgctxt "#30003"
+msgid "View"
+msgstr ""
+
 #empty strings from id 30004 to 30100
 # SETTINGS-BUTTONS
 
@@ -98,20 +102,40 @@ msgid "     Region ('us' for example)"
 msgstr ""
 
 
+#empty strings from id 30004 to 30100
+# SETTINGS-BUTTONS
+
+msgctxt "#30116"
+msgid "     Force View"
+msgstr ""
+
+msgctxt "#30117"
+msgid "     ViewID (Genres)"
+msgstr ""
+
+msgctxt "#30118"
+msgid "     ViewID (Playlists)"
+msgstr ""
+
+msgctxt "#30119"
+msgid "     ViewID (Videos)"
+msgstr ""
+
+
 msgctxt "#30653"
-msgid "[COLOR lime]. [COLOR white]Viral Streams [COLOR lime][ Country - Daily ][/COLOR]"
+msgid "[COLOR lime]. [COLOR white]Viral Streams [COLOR lime][ By Country - Daily ][/COLOR]"
 msgstr ""
 
 msgctxt "#30654"
-msgid "[COLOR lime]. [COLOR white]Viral Streams [COLOR lime][ Country - Weekly ][/COLOR]"
+msgid "[COLOR lime]. [COLOR white]Viral Streams [COLOR lime][ By Country - Weekly ][/COLOR]"
 msgstr ""
 
 msgctxt "#30655"
-msgid "[COLOR lime]. [COLOR white]Top Streams [COLOR lime][ Country - Daily ][/COLOR]"
+msgid "[COLOR lime]. [COLOR white]Top Streams [COLOR lime][ By Country - Daily ][/COLOR]"
 msgstr ""
 
 msgctxt "#30656"
-msgid "[COLOR lime]. [COLOR white]Top Streams [COLOR lime][ Country - Weekly ][/COLOR]"
+msgid "[COLOR lime]. [COLOR white]Top Streams [COLOR lime][ By Country - Weekly ][/COLOR]"
 msgstr ""
 
 msgctxt "#30657"
