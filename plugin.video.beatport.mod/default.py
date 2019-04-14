@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+ 
 import sys
 import os
 import re
@@ -7,7 +7,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
-
+ 
 PY2 = sys.version_info[0] == 2
 PY3 = sys.version_info[0] == 3
 if PY2:
@@ -15,13 +15,14 @@ if PY2:
     from urllib2 import build_opener, HTTPCookieProcessor, Request, urlopen  # Python 2.X
     from cookielib import LWPCookieJar  # Python 2.X
     from urlparse import urljoin, urlparse, urlunparse  # Python 2.X
-
+ 
     bytes = str
 elif PY3:
-    from urllib.parse import quote, unquote, quote_plus, unquote_plus, urlencode, urljoin, urlparse, urlunparse  # Python 3+
+    from urllib.parse import quote, unquote, quote_plus, unquote_plus, urlencode, urljoin, urlparse, \
+        urlunparse  # Python 3+
     from urllib.request import build_opener, HTTPCookieProcessor, Request, urlopen  # Python 3+
     from http.cookiejar import LWPCookieJar  # Python 3+
-
+ 
     bytes = bytes
 from operator import itemgetter
 import json
@@ -33,14 +34,14 @@ import time
 import io
 import gzip
 import ssl
-
+ 
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
     pass
 else:
     ssl._create_default_https_context = _create_unverified_https_context
-
+ 
 pluginhandle = int(sys.argv[1])
 addon = xbmcaddon.Addon()
 socket.setdefaulttimeout(40)
@@ -63,17 +64,15 @@ viewIDGenres = str(addon.getSetting("viewIDGenres"))
 viewIDPlaylists = str(addon.getSetting("viewIDPlaylists"))
 viewIDVideos = str(addon.getSetting("viewIDVideos"))
 urlBaseBP = "https://www.beatport.com"
-#REtoken2 = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
-#REtoken3 = "AIzaSyDDxfHuYTdjwAUnFPeFUgqGvJM8qqLpdGc"
-token = "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo"
+token = "AIzaSyATg5dx9avsNZ-20goP8j0Wl_gbmyk03nI"
 xbmcplugin.setContent(int(sys.argv[1]), 'musicvideos')
-
+ 
 if cachePath == "":
     addon.setSetting(id='cacheDir', value='special://profile/addon_data/' + addon.getAddonInfo('id') + '/cache')
-elif cachePath != "" and not os.path.isdir(cachePath) and not cachePath.startswith(('smb://', 'nfs://', 'upnp://', 'ftp://')):
+elif cachePath != "" and not os.path.isdir(cachePath) and not cachePath.startswith( ('smb://', 'nfs://', 'upnp://', 'ftp://')):
     os.mkdir(cachePath)
-elif cachePath != "" and not os.path.isdir(cachePath) and cachePath.startswith(('smb://', 'nfs://', 'upnp://', 'ftp://')):
-    addon.setSetting(id='cacheDir', value='special://profile/addon_data/' + addon.getAddonInfo('id') + '/cache') and os.mkdir(cachePath)
+elif cachePath != "" and not os.path.isdir(cachePath) and cachePath.startswith( ('smb://', 'nfs://', 'upnp://', 'ftp://')):
+    addon.setSetting(id='cacheDir', value='special://profile/addon_data/' + addon.getAddonInfo('id') + '/cache') and os.mkdir( cachePath)
 elif cachePath != "" and os.path.isdir(cachePath):
     xDays = cacheDays  # Days after which Files would be deleted
     now = time.time()  # Date and time now
@@ -82,58 +81,104 @@ elif cachePath != "" and os.path.isdir(cachePath):
             filename = os.path.join(root, name).encode('utf-8').decode('utf-8')
             try:
                 if os.path.exists(filename):
-                    if os.path.getmtime(filename) < now - (60 * 60 * 24 * xDays):  # Check if CACHE-File exists and remove CACHE-File after defined xDays
+                    if os.path.getmtime(filename) < now - ( 60 * 60 * 24 * xDays):  # Check if CACHE-File exists and remove CACHE-File after defined xDays
                         os.unlink(filename)
             except:
                 pass
-
-
+ 
+ 
 def py2_enc(s, encoding='utf-8'):
     if PY2 and isinstance(s, unicode):
         s = s.encode(encoding)
     return s
-
-
+ 
+ 
 def py2_uni(s, encoding='utf-8'):
     if PY2 and isinstance(s, str):
         s = unicode(s, encoding)
     return s
-
-
+ 
+ 
 def py3_dec(d, encoding='utf-8'):
     if PY3 and isinstance(d, bytes):
         d = d.decode(encoding)
     return d
-
-
+ 
+ 
 def TitleCase(s):
     return re.sub(r"[A-Za-z]+('[A-Za-z]+)?", lambda mo: mo.group(0)[0].upper() + mo.group(0)[1:].lower(), s)
-
-
+ 
+ 
 def translation(id):
     LANGUAGE = addon.getLocalizedString(id)
     LANGUAGE = py2_enc(LANGUAGE)
     return LANGUAGE
-
-
+ 
+ 
+def replace_names(txt):
+    """Just add a new line on this function to replace whatever you want
+ Don't forget that its case sensitive and it has to be the exact text
+ Example 1: text = text.replace('text_to_replace', 'replaced_text')
+ Example 2: text = re.sub(r'(?<!\.)text_to_replace$', 'replaced_text', txt)
+ on example 2 it helps prevent matching already processed strings, the ones which have the . in the front
+ 
+ """
+ 
+    txt = re.sub(r'(?<!\.)Afro House$', '[B][COLOR lime].[/COLOR] [COLOR white]Afro House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Bass House$', '[B][COLOR lime].[/COLOR] [COLOR white]Bass House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Breaks$', '[B][COLOR lime].[/COLOR] [COLOR white]Breaks[/COLOR][/B] [COLOR blue][ Breakbeat ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Deep House$', '[B][COLOR lime].[/COLOR] [COLOR white]Deep House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Drum & Bass$', '[B][COLOR lime].[/COLOR] [COLOR white]Drum & Bass[/COLOR][/B] [COLOR blue][ DnB ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Dubstep$', '[B][COLOR lime].[/COLOR] [COLOR white]Dubstep[/COLOR][/B] [COLOR blue][ DnB ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Electro House$', '[B][COLOR lime].[/COLOR] [COLOR white]Electro House[/COLOR][/B] [COLOR blue][ Fusion ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Electronica / Downtempo$', '[B][COLOR lime].[/COLOR] [COLOR white]Electronica[/COLOR][/B] [COLOR blue][ Downtempo ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Future House$', '[B][COLOR lime].[/COLOR] [COLOR white]Future House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Hard Dance$', '[B][COLOR lime].[/COLOR] [COLOR white]Hardcore[/COLOR][/B] [COLOR blue][ Gabber ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Hardcore / Hard Techno$', '[B][COLOR lime].[/COLOR] [COLOR white]Hard Techno[/COLOR][/B] [COLOR blue][ Techno ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Hip-Hop / R&B$', '[B][COLOR lime].[/COLOR] [COLOR white]Hip Hop[/COLOR][/B] [COLOR blue][ Rap ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Melodic House & Techno$', '[B][COLOR lime].[/COLOR] [COLOR white]Melodic[/COLOR][/B] [COLOR blue][ House and Techno ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Minimal / Deep Tech$', '[B][COLOR lime].[/COLOR] [COLOR white]Minimal[/COLOR][/B] [COLOR blue][ Tech ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Progressive House$', '[B][COLOR lime].[/COLOR] [COLOR white]Progressive House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Psy-Trance$', '[B][COLOR lime].[/COLOR] [COLOR white]Psy Trance[/COLOR][/B] [COLOR blue][ Trance ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Tech House$', '[B][COLOR lime].[/COLOR] [COLOR white]Tech House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Techno$', '[B][COLOR lime].[/COLOR] [COLOR white]Techno[/COLOR][/B] [COLOR blue][ Techno ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Trance$', '[B][COLOR lime].[/COLOR] [COLOR white]Trance[/COLOR][/B] [COLOR blue][ Trance ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Trap / Future Bass$', '[B][COLOR lime].[/COLOR] [COLOR white]Trap[/COLOR][/B] [COLOR blue][ Future Bass ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)House$', '[B][COLOR lime].[/COLOR] [COLOR white]House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
+ 
+    return txt
+ 
+ 
+def skip_list(txt):
+    """Will skip items based on the conditional you add on each line
+ Example 1: 'some text' in txt.lower() (lower cased, also a more loose rule)
+ Example 2: 'SoMe TeXt' == txt (a lot stricter, it has to be exact"""
+ 
+    list_to_skip = [
+        'big room' in txt.lower(), 'dance' in txt.lower(), 'dj tools' in txt.lower(), 'funk' in txt.lower(), 'garage' in txt.lower(), 'leftfield' in txt.lower(), 'dancehall' in txt.lower()
+    ]
+ 
+    return list_to_skip
+ 
+ 
 def failing(content):
     log(content, xbmc.LOGERROR)
-
-
+ 
+ 
 def debug(content):
     log(content, xbmc.LOGDEBUG)
-
-
+ 
+ 
 def log(msg, level=xbmc.LOGNOTICE):
     msg = py2_enc(msg)
     xbmc.log("[" + addon.getAddonInfo('id') + "-" + addon.getAddonInfo('version') + "]" + msg, level)
-
-
+ 
+ 
 def index():
     addDir(translation(30601), "", "beatportMain", pic + 'beatport.png')
     xbmcplugin.endOfDirectory(pluginhandle)
-
-
+ 
+ 
 def beatportMain():
     content = cache('https://pro.beatport.com', 30)
     content = content[content.find('<div class="mobile-menu-body">') + 1:]
@@ -143,15 +188,16 @@ def beatportMain():
     addAutoPlayDir(allTitle, urlBaseBP + "", "", pic + 'beatport.png', "", "browse")
     for genreURL, genreTYPE, genreTITLE in match:
         topUrl = urlBaseBP + genreURL + '/top-100'
-        title = cleanTitle(genreTITLE).replace('Electronica / Downtempo', 'Electronica').replace('Breaks', 'Breakbeat').replace('Hardcore / Hard Techno', 'Hard Techno ').replace('Hip-Hop / R&B','Rap').replace('Melodic House & Techno', 'Melodic Tech').replace('Minimal / Deep Tech', 'Minimal').replace('Trap / Future Bass', 'Trap').replace('Hard Dance', 'Hardcore').replace('Indie Dance / Nu Disco', 'Indie Dance').replace('Psy-Trance', 'Psy Trance')
-        if any(['big room' in title.lower(), 'dj tools' in title.lower(), 'funk' in title.lower(), 'garage' in title.lower(), 'leftfield' in title.lower(), 'dancehall' in title.lower()]):
+        title = cleanTitle(genreTITLE)
+        title = replace_names(title)  # new function added
+        if any(skip_list(title)):  # it will skip these
             continue
         addAutoPlayDir(title, topUrl, "listBeatportVideos", pic + 'beatport.png', "", "browse")
     xbmcplugin.endOfDirectory(pluginhandle)
     if forceView:
         xbmc.executebuiltin('Container.SetViewMode(' + viewIDGenres + ')')
-
-
+ 
+ 
 def listBeatportVideos(type, url, limit):
     musicVideos = []
     count = 0
@@ -199,7 +245,7 @@ def listBeatportVideos(type, url, limit):
         if filtered:
             continue
         if type == "play":
-            url = "plugin://" + addon.getAddonInfo('id') + "/?url=" + quote_plus(firstTitle.replace(" - ", " ")) + "&mode=playYTByTitle"
+            url = "plugin://" + addon.getAddonInfo('id') + "/?url=" + quote_plus( firstTitle.replace(" - ", " ")) + "&mode=playYTByTitle"
         else:
             url = firstTitle
         musicVideos.append([firstTitle, completeTitle, url, thumb])
@@ -219,8 +265,8 @@ def listBeatportVideos(type, url, limit):
             listitem = xbmcgui.ListItem(firstTitle, thumbnailImage=thumb)
             playlist.add(url, listitem)
         xbmc.Player().play(playlist)
-
-
+ 
+ 
 def getHTML(url, headers=False, referer=False):
     req = Request(url)
     if headers:
@@ -238,13 +284,14 @@ def getHTML(url, headers=False, referer=False):
         link = py3_dec(response.read())
     response.close()
     return link
-
+ 
+ 
 def cache(url, duration=0):
     cacheFile = os.path.join(cachePath, (''.join(c for c in py2_uni(url) if c not in '/\\:?"*|<>')).strip())
     if len(cacheFile) > 255:
         cacheFile = cacheFile.replace("part=snippet&type=video&maxResults=5&order=relevance&q", "")
         cacheFile = cacheFile[:255]
-    if os.path.exists(cacheFile) and duration != 0 and os.path.getmtime(cacheFile) < time.time() - (60 * 60 * 24 * duration):
+    if os.path.exists(cacheFile) and duration != 0 and os.path.getmtime(cacheFile) < time.time() - ( 60 * 60 * 24 * duration):
         fh = xbmcvfs.File(cacheFile, 'r')
         content = fh.read()
         fh.close()
@@ -254,13 +301,13 @@ def cache(url, duration=0):
         fh.write(content)
         fh.close()
     return content
-
-
+ 
+ 
 def getYoutubeId(title):
     title = quote_plus(title.lower()).replace('%5B', '').replace('%5D', '').replace('%28', '').replace('%29', '')
     videoBest = False
     movieID = []
-    content = cache("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&order=relevance&q=%s&key=%s" % (title, token), 1)
+    content = cache( "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&order=relevance&q=%s&key=%s" % ( title, token), 1)
     response = json.loads(content)
     for videoTrack in response.get('items', []):
         if videoTrack['id']['kind'] == "youtube#video":
@@ -280,8 +327,8 @@ def getYoutubeId(title):
     else:
         xbmcgui.Dialog().notification('Youtube Music : [COLOR red]!!! URL - ERROR !!![/COLOR]', 'ERROR = [COLOR red]No *SingleEntry* found on YOUTUBE ![/COLOR]', icon, 6000)
     return videoBest
-
-
+ 
+ 
 def playYTByTitle(title):
     try:
         youtubeID = getYoutubeId('official ' + title)
@@ -292,8 +339,8 @@ def playYTByTitle(title):
             showInfo()
     except:
         pass
-
-
+ 
+ 
 def showInfo():
     count = 0
     while not xbmc.Player().isPlaying():
@@ -325,25 +372,25 @@ def showInfo():
         xbmcgui.Dialog().notification(TOP, relTitle + "[COLOR blue]  * " + runTime + " *[/COLOR]", photo, infoDuration * 1000)
     else:
         pass
-
-
+ 
+ 
 def cleanTitle(title):
     title = py2_enc(title)
-    title = title.replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&").replace("&Amp;", "&").replace("&#34;", "”").replace("&#39;", "'").replace("&#039;", "'").replace("&quot;", "\"").replace("&Quot;", "\"").replace("&szlig;", "ß").replace("&mdash;", "-").replace("&ndash;", "-").replace('–', '-')
-    title = title.replace("&#x00c4", "Ä").replace("&#x00e4", "ä").replace("&#x00d6", "Ö").replace("&#x00f6", "ö").replace("&#x00dc", "Ü").replace("&#x00fc", "ü").replace("&#x00df", "ß")
-    title = title.replace("&Auml;", "Ä").replace("&auml;", "ä").replace("&Euml;", "Ë").replace("&euml;", "ë").replace("&Iuml;", "Ï").replace("&iuml;", "ï").replace("&Ouml;", "Ö").replace("&ouml;", "ö").replace("&Uuml;", "Ü").replace("&uuml;", "ü").replace("&#376;", "Ÿ").replace("&yuml;", "ÿ")
-    title = title.replace("&agrave;", "à").replace("&Agrave;", "À").replace("&aacute;", "á").replace("&Aacute;", "Á").replace("&egrave;", "è").replace("&Egrave;", "È").replace("&eacute;", "é").replace("&Eacute;", "É").replace("&igrave;", "ì").replace("&Igrave;", "Ì").replace("&iacute;", "í").replace("&Iacute;", "Í")
-    title = title.replace("&ograve;", "ò").replace("&Ograve;", "Ò").replace("&oacute;", "ó").replace("&Oacute;", "ó").replace("&ugrave;", "ù").replace("&Ugrave;", "Ù").replace("&uacute;", "ú").replace("&Uacute;", "Ú").replace("&yacute;", "ý").replace("&Yacute;", "Ý")
-    title = title.replace("&atilde;", "ã").replace("&Atilde;", "Ã").replace("&ntilde;", "ñ").replace("&Ntilde;", "Ñ").replace("&otilde;", "õ").replace("&Otilde;", "Õ").replace("&Scaron;", "Š").replace("&scaron;", "š")
-    title = title.replace("&acirc;", "â").replace("&Acirc;", "Â").replace("&ccedil;", "ç").replace("&Ccedil;", "Ç").replace("&ecirc;", "ê").replace("&Ecirc;", "Ê").replace("&icirc;", "î").replace("&Icirc;", "Î").replace("&ocirc;", "ô").replace("&Ocirc;", "Ô").replace("&ucirc;", "û").replace("&Ucirc;", "Û")
-    title = title.replace("&alpha;", "a").replace("&Alpha;", "A").replace("&aring;", "å").replace("&Aring;", "Å").replace("&aelig;", "æ").replace("&AElig;", "Æ").replace("&epsilon;", "e").replace("&Epsilon;", "Ε").replace("&eth;", "ð").replace("&ETH;", "Ð").replace("&gamma;", "g").replace("&Gamma;", "G")
-    title = title.replace("&oslash;", "ø").replace("&Oslash;", "Ø").replace("&theta;", "θ").replace("&thorn;", "þ").replace("&THORN;", "Þ")
-    title = title.replace("\\'", "'").replace("&x27;", "'").replace("&bull;", "•").replace("&iexcl;", "¡").replace("&iquest;", "¿").replace("&rsquo;", "’").replace("&lsquo;", "‘").replace("&sbquo;", "’").replace("&rdquo;", "”").replace("&ldquo;", "“").replace("&bdquo;", "”").replace("&rsaquo;", "›").replace("lsaquo;", "‹").replace("&raquo;", "»").replace("&laquo;", "«")
-    title = title.replace(" ft ", " feat. ").replace(" FT ", " feat. ").replace(" Ft ", " feat. ").replace("Ft.", "feat.").replace("ft.", "feat.").replace(" FEAT ", " feat. ").replace(" Feat ", " feat. ").replace("Feat.", "feat.").replace("Featuring", "feat.").replace("&copy;", "©").replace("&reg;", "®").replace("™", "")
+    title = title.replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&").replace("&Amp;", "&").replace("&#34;", "”").replace( "&#39;", "'").replace("&#039;", "'").replace("&quot;", "\"").replace("&Quot;", "\"").replace("&szlig;", "ß").replace( "&mdash;", "-").replace("&ndash;", "-").replace('–', '-')
+    title = title.replace("&#x00c4", "Ä").replace("&#x00e4", "ä").replace("&#x00d6", "Ö").replace("&#x00f6", "ö").replace( "&#x00dc", "Ü").replace("&#x00fc", "ü").replace("&#x00df", "ß")
+    title = title.replace("&Auml;", "Ä").replace("&auml;", "ä").replace("&Euml;", "Ë").replace("&euml;", "ë").replace( "&Iuml;", "Ï").replace("&iuml;", "ï").replace("&Ouml;", "Ö").replace("&ouml;", "ö").replace("&Uuml;", "Ü").replace( "&uuml;", "ü").replace("&#376;", "Ÿ").replace("&yuml;", "ÿ")
+    title = title.replace("&agrave;", "à").replace("&Agrave;", "À").replace("&aacute;", "á").replace("&Aacute;", "Á").replace( "&egrave;", "è").replace("&Egrave;", "È").replace("&eacute;", "é").replace("&Eacute;", "É").replace("&igrave;", "ì").replace( "&Igrave;", "Ì").replace("&iacute;", "í").replace("&Iacute;", "Í")
+    title = title.replace("&ograve;", "ò").replace("&Ograve;", "Ò").replace("&oacute;", "ó").replace("&Oacute;", "ó").replace( "&ugrave;", "ù").replace("&Ugrave;", "Ù").replace("&uacute;", "ú").replace("&Uacute;", "Ú").replace("&yacute;", "ý").replace( "&Yacute;", "Ý")
+    title = title.replace("&atilde;", "ã").replace("&Atilde;", "Ã").replace("&ntilde;", "ñ").replace("&Ntilde;", "Ñ").replace( "&otilde;", "õ").replace("&Otilde;", "Õ").replace("&Scaron;", "Š").replace("&scaron;", "š")
+    title = title.replace("&acirc;", "â").replace("&Acirc;", "Â").replace("&ccedil;", "ç").replace("&Ccedil;", "Ç").replace( "&ecirc;", "ê").replace("&Ecirc;", "Ê").replace("&icirc;", "î").replace("&Icirc;", "Î").replace("&ocirc;", "ô").replace( "&Ocirc;", "Ô").replace("&ucirc;", "û").replace("&Ucirc;", "Û")
+    title = title.replace("&alpha;", "a").replace("&Alpha;", "A").replace("&aring;", "å").replace("&Aring;", "Å").replace( "&aelig;", "æ").replace("&AElig;", "Æ").replace("&epsilon;", "e").replace("&Epsilon;", "Ε").replace("&eth;", "ð").replace( "&ETH;", "Ð").replace("&gamma;", "g").replace("&Gamma;", "G")
+    title = title.replace("&oslash;", "ø").replace("&Oslash;", "Ø").replace("&theta;", "θ").replace("&thorn;", "þ").replace( "&THORN;", "Þ")
+    title = title.replace("\\'", "'").replace("&x27;", "'").replace("&bull;", "•").replace("&iexcl;", "¡").replace( "&iquest;", "¿").replace("&rsquo;", "’").replace("&lsquo;", "‘").replace("&sbquo;", "’").replace("&rdquo;", "”").replace( "&ldquo;", "“").replace("&bdquo;", "”").replace("&rsaquo;", "›").replace("lsaquo;", "‹").replace("&raquo;", "»").replace( "&laquo;", "«")
+    title = title.replace(" ft ", " feat. ").replace(" FT ", " feat. ").replace(" Ft ", " feat. ").replace("Ft.", "feat.").replace( "ft.", "feat.").replace(" FEAT ", " feat. ").replace(" Feat ", " feat. ").replace("Feat.", "feat.").replace( "Featuring", "feat.").replace("&copy;", "©").replace("&reg;", "®").replace("™", "")
     title = title.strip()
     return title
-
-
+ 
+ 
 def parameters_string_to_dict(parameters):
     paramDict = {}
     if parameters:
@@ -353,8 +400,8 @@ def parameters_string_to_dict(parameters):
             if (len(paramSplits)) == 2:
                 paramDict[paramSplits[0]] = paramSplits[1]
     return paramDict
-
-
+ 
+ 
 def addVideoList(url, name, image):
     PL = xbmc.PlayList(1)
     listitem = xbmcgui.ListItem(name, thumbnailImage=image)
@@ -363,8 +410,8 @@ def addVideoList(url, name, image):
     listitem.setProperty('IsPlayable', 'true')
     listitem.setContentLookup(False)
     PL.add(url, listitem)
-
-
+ 
+ 
 def addLink(name, url, mode, image, plot=None):
     u = sys.argv[0] + "?url=" + quote_plus(url) + "&mode=" + str(mode)
     liz = xbmcgui.ListItem(name, iconImage="DefaultAudio.png", thumbnailImage=image)
@@ -372,10 +419,10 @@ def addLink(name, url, mode, image, plot=None):
     if useThumbAsFanart:
         liz.setArt({'fanart': defaultFanart})
     liz.setProperty('IsPlayable', 'true')
-    liz.addContextMenuItems([(translation(30807), 'RunPlugin(plugin://{0}/?mode=addVideoList&url={1}&name={2}&image={3})'.format(addon.getAddonInfo('id'), quote_plus(u), quote_plus(name), quote_plus(image)))])
+    liz.addContextMenuItems([(translation(30807), 'RunPlugin(plugin://{0}/?mode=addVideoList&url={1}&name={2}&image={3})'.format( addon.getAddonInfo('id'), quote_plus(u), quote_plus(name), quote_plus(image)))])
     return xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz)
-
-
+ 
+ 
 def addDir(name, url, mode, image, plot=None):
     u = sys.argv[0] + "?url=" + quote_plus(url) + "&mode=" + str(mode)
     liz = xbmcgui.ListItem(name, iconImage="DefaultMusicVideos.png", thumbnailImage=image)
@@ -383,25 +430,25 @@ def addDir(name, url, mode, image, plot=None):
     if useThumbAsFanart:
         liz.setArt({'fanart': defaultFanart})
     return xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=True)
-
-
+ 
+ 
 def addAutoPlayDir(name, url, mode, image, plot=None, type=None, limit=None):
-    u = sys.argv[0] + "?url=" + quote_plus(url) + "&mode=" + str(mode) + "&type=" + str(type) + "&limit=" + str(limit) + '&image=' + quote_plus(image)
+    u = sys.argv[0] + "?url=" + quote_plus(url) + "&mode=" + str(mode) + "&type=" + str(type) + "&limit=" + str( limit) + '&image=' + quote_plus(image)
     liz = xbmcgui.ListItem(name, iconImage="DefaultMusicVideos.png", thumbnailImage=image)
     liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": plot, 'mediatype': 'video'})
     if useThumbAsFanart:
         liz.setArt({'fanart': defaultFanart})
     entries = []
-    entries.append((translation(30831), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=)'))
-    entries.append((translation(30832), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=10)'))
-    entries.append((translation(30833), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=20)'))
-    entries.append((translation(30834), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=30)'))
-    entries.append((translation(30835), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=40)'))
-    entries.append((translation(30836), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus(url) + '&type=play&limit=50)'))
+    entries.append((translation(30831), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=)'))
+    entries.append((translation(30832), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=10)'))
+    entries.append((translation(30833), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=20)'))
+    entries.append((translation(30834), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=30)'))
+    entries.append((translation(30835), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=40)'))
+    entries.append((translation(30836), 'RunPlugin(plugin://' + addon.getAddonInfo('id') + '/?mode=' + str(mode) + '&url=' + quote_plus( url) + '&type=play&limit=50)'))
     liz.addContextMenuItems(entries, replaceItems=False)
     return xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=True)
-
-
+ 
+ 
 params = parameters_string_to_dict(sys.argv[2])
 name = unquote_plus(params.get('name', ''))
 url = unquote_plus(params.get('url', ''))
@@ -410,8 +457,7 @@ image = unquote_plus(params.get('image', ''))
 type = unquote_plus(params.get('type', ''))
 limit = unquote_plus(params.get('limit', ''))
 referer = unquote_plus(params.get('referer', ''))
-
-
+ 
 if mode == 'beatportMain' or mode == '':
     beatportMain()
 elif mode == 'listBeatportVideos':
@@ -422,4 +468,3 @@ elif mode == 'addVideoList':
     addVideoList(url, name, image)
 else:
     index()
-
