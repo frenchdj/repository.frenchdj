@@ -116,3 +116,27 @@ msgstr ""
 msgctxt "#30801"
 msgid "[COLOR lime]. [COLOR white]Settings[/COLOR]"
 msgstr ""
+
+msgctxt "#30831"
+msgid "[B][COLOR chartreuse]Play All[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30832"
+msgid "[B]Play [COLOR chartreuse]Top 10[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30833"
+msgid "[B]Play [COLOR chartreuse]Top 20[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30834"
+msgid "[B]Play [COLOR chartreuse]Top 30[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30835"
+msgid "[B]Play [COLOR chartreuse]Top 40[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30836"
+msgid "[B]Play [COLOR chartreuse]Top 50[/COLOR][/B]"
+msgstr ""

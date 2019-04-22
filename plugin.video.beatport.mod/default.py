@@ -64,7 +64,9 @@ viewIDGenres = str(addon.getSetting("viewIDGenres"))
 viewIDPlaylists = str(addon.getSetting("viewIDPlaylists"))
 viewIDVideos = str(addon.getSetting("viewIDVideos"))
 urlBaseBP = "https://www.beatport.com"
-token = "AIzaSyATg5dx9avsNZ-20goP8j0Wl_gbmyk03nI"
+#REtoken2 = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
+#REtoken3 = "AIzaSyDDxfHuYTdjwAUnFPeFUgqGvJM8qqLpdGc"
+token = "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo"
 xbmcplugin.setContent(int(sys.argv[1]), 'musicvideos')
  
 if cachePath == "":
