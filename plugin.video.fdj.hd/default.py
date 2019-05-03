@@ -185,7 +185,7 @@ def makeRequest(url, headers=None):
                 xbmc.executebuiltin("XBMC.Notification(FDJ.hd, server error. - "+str(e.reason)+",10000,"+icon+")")
 
 def SKindex():
-    addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR] 2.1','','','')
+    addDir('[B][COLOR lime]| Favourites[/COLOR][/B]','[B][COLOR lime]| Favourites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]','','','')
     getData(Base,FANART)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
