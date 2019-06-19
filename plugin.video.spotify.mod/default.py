@@ -136,9 +136,6 @@ def index():
 	xbmcplugin.endOfDirectory(pluginhandle)
 
 def spotifyMain():
-	addDir("[COLOR lime][B]SPOTIFY [COLOR white]- [COLOR deepskyblue]Regional[COLOR white] :[/B][/COLOR]", "", "spotifyMain", pic+'spotify.png')
-	addDir(translation(30659), urlBaseSTUN+"genres?region="+spotifyRegion+"&per_page=1000&platform=web", "listSpotifyTUN_Genres", pic+'spotify.png')
-	addDir(translation(30657), urlBaseSTUN+"toplists?region="+spotifyRegion+"&page=0&per_page=50&platform=web", "listSpotifyTUN_Playlists", pic+'spotify.png')
 	
 	addDir("[COLOR lime][B]SPOTIFY [COLOR white]- [COLOR deepskyblue]Streams[COLOR white] :[/B][/COLOR]", "", "spotifyMain", pic+'spotify.png')
 	addDir(translation(30655), "topdaily", "listSpotifyCC_Countries", pic+'spotify.png')
