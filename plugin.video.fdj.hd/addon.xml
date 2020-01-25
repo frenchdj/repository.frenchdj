@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.fdj.hd"
        name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
-       version="2.3"
+       version="2.4"
        provider-name="frenchdj">
- <requires>
-	<import addon="xbmc.python" version="2.1.0"/>
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.resolveurl" optional="true"/>
     <import addon="script.module.simplejson" />    
+    <import addon="script.module.livestreamer" optional="true"/>
+    <import addon="script.module.slproxy" optional="true"/>
+    <import addon="script.module.pyamf" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">[ 2nd Edition ]</summary>
-    <description>FDJ.HD is a AAIO (Almost All In One) with Concerts, Djs, Docs, Humor and more ... 
-Home of Alive.HD, Beats.HD, Documented.HD and Flashdoc.HD.
-Channels and Playlists organized by categories. Source: Youtube Website. 
-[B][COLOR lime]Advised the latest version of youtube 6.*.*[/B][/COLOR]</description>
+    <summary lang="en">[ User / Password edition ]</summary>
+    <description>FDJ.HD is a AIO with Concerts, Djs, Docs and more.
+[COLOR white]Home of Alive.HD, Beats.HD and Documented.HD.
+[B][COLOR lime]USER [COLOR white]and [COLOR lime]PASSWORD[COLOR white]:
+[/B]To get your login you need to go to: https://twitter.com/frenchdj2.[/COLOR]
+On twitter, you send me a private message to get the credentials.
+</description>
     <platform>all</platform>
   </extension>
 </addon>
