@@ -56,7 +56,7 @@ favorites = os.path.join(profile, 'favorites')
 history = os.path.join(profile, 'history')
 REV = os.path.join(profile, 'list_revision')
 icon = os.path.join(home, 'icon.png')
-FANART = os.path.join('special://home/addons/plugin.video.fdj.hd/resources/FDJ.HD_1.jpg')
+FANART = os.path.join(home,'fanart.gif')
 source_file = os.path.join(profile, 'source_file')
 functions_dir = profile
 USER = addon.getSetting('User')
@@ -114,7 +114,7 @@ def makeRequest(url, headers=None):
                 addon_log('Reason: %s' %e.reason)
                 xbmc.executebuiltin("XBMC.Notification(FDJ.HD, server error. - "+str(e.reason)+",10000,"+icon+")")
 def SKindex():
-    addDir('[B][COLOR lime]. Favorites[/COLOR][/B]','[B][COLOR lime]. Favorites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favorites.png',FANART,'[COLOR lime].[/COLOR]','','','')
+    addDir('[B][COLOR lime][ Favorites and Info ][/COLOR][/B]','[B][COLOR lime][ Favorites and Info ][/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favorites_Info.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]','','','')
     getData(Base,FANART)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
