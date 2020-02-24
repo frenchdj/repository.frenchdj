@@ -68,7 +68,7 @@ urlBaseSCC = "https://spotifycharts.com/"
 urlBaseSTUN = "https://api.tunigo.com/v3/space/"
 #REtoken2 = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
 #REtoken3 = "AIzaSyDDxfHuYTdjwAUnFPeFUgqGvJM8qqLpdGc"
-token = "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo"
+token = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
 xbmcplugin.setContent(int(sys.argv[1]), 'musicvideos')
 	
 	
