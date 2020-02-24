@@ -66,7 +66,7 @@ viewIDVideos = str(addon.getSetting("viewIDVideos"))
 urlBaseBP = "https://www.beatport.com"
 #REtoken2 = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
 #REtoken3 = "AIzaSyDDxfHuYTdjwAUnFPeFUgqGvJM8qqLpdGc"
-token = "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo"
+token = "AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8"
 xbmcplugin.setContent(int(sys.argv[1]), 'musicvideos')
  
 if cachePath == "":
@@ -136,7 +136,7 @@ def replace_names(txt):
     txt = re.sub(r'(?<!\.)Electronica / Downtempo$', '[B][COLOR lime].[/COLOR] [COLOR white]Electronica[/COLOR][/B] [COLOR blue][ Downtempo ][/COLOR]', txt)
     txt = re.sub(r'(?<!\.)Future House$', '[B][COLOR lime].[/COLOR] [COLOR white]Future House[/COLOR][/B] [COLOR blue][ House ][/COLOR]', txt)
     txt = re.sub(r'(?<!\.)Hard Dance / Hardcore$', '[B][COLOR lime].[/COLOR] [COLOR white]Hardcore[/COLOR][/B] [COLOR blue][ Gabber ][/COLOR]', txt)
-    txt = re.sub(r'(?<!\.)Hard Techno$', '[B][COLOR lime].[/COLOR] [COLOR white]Hard Style[/COLOR][/B] [COLOR blue][ Techno ][/COLOR]', txt)
+    txt = re.sub(r'(?<!\.)Techno$ / Peak Time$ / Driving$ / Hard$', '[B][COLOR lime].[/COLOR] [COLOR white]Hard Techno[/COLOR][/B] [COLOR blue][ Techno ][/COLOR]', txt)
     txt = re.sub(r'(?<!\.)Hip-Hop / R&B$', '[B][COLOR lime].[/COLOR] [COLOR white]Hip Hop[/COLOR][/B] [COLOR blue][ Rap ][/COLOR]', txt)
     txt = re.sub(r'(?<!\.)Melodic House & Techno$', '[B][COLOR lime].[/COLOR] [COLOR white]Melodic[/COLOR][/B] [COLOR blue][ House and Techno ][/COLOR]', txt)
     txt = re.sub(r'(?<!\.)Minimal / Deep Tech$', '[B][COLOR lime].[/COLOR] [COLOR white]Minimal[/COLOR][/B] [COLOR blue][ Tech ][/COLOR]', txt)
