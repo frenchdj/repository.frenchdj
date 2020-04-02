@@ -29,7 +29,7 @@ Thanks to Twilight for helping me with the Beatport categories.</description>
 
 <addon id="plugin.video.fdj.hd"
        name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
-       version="2.5"
+       version="2.5a"
        provider-name="frenchdj">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
