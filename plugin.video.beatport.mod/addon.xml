@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<addon id="plugin.video.beatport.mod" name="Beatport Mod" version="1.7" provider-name="frenchdj">
+<addon id="plugin.video.beatport.mod" name="Beatport Mod" version="2.0" provider-name="frenchdj">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="plugin.video.youtube" optional="true"/>
@@ -11,7 +11,8 @@
 		<summary lang="en">Play Music via Youtube</summary>
 		<description lang="en">Choose Music from beatport and play it via Youtube.
 This plugin is a fork from the Beatport part of realvito spotitube addon.
-Thanks to Twilight for helping me with the Beatport categories.</description>
+Thanks to Twilight for helping me with the Beatport categories
+[COLOR red]This addon needs a Personal Youtube API to work[/COLOR]</description>
 		<language></language>
 		<platform>all</platform>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>

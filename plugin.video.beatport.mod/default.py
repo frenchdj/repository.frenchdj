@@ -63,9 +63,12 @@ forceView = addon.getSetting("forceView") == 'true'
 viewIDGenres = str(addon.getSetting("viewIDGenres"))
 viewIDPlaylists = str(addon.getSetting("viewIDPlaylists"))
 viewIDVideos = str(addon.getSetting("viewIDVideos"))
+myTOKEN = str(addon.getSetting('pers_apiKey'))
 urlBaseBP = "https://www.beatport.com"
-token = "AIzaSyD-ew6Tm9wIJIoMCMZuReb3xvs0ccNHvl4"
 xbmcplugin.setContent(int(sys.argv[1]), 'musicvideos')
+
+if myTOKEN == '':
+	xbmc.executebuiltin('addon.openSettings({0})'.format(addon.getAddonInfo('id')))
  
 if cachePath == "":
     addon.setSetting(id='cacheDir', value='special://profile/addon_data/' + addon.getAddonInfo('id') + '/cache')
@@ -308,7 +311,7 @@ def getYoutubeId(title):
     title = quote_plus(title.lower()).replace('%5B', '').replace('%5D', '').replace('%28', '').replace('%29', '')
     videoBest = False
     movieID = []
-    content = cache( "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&order=relevance&q=%s&key=%s" % ( title, token), 1)
+    content = cache( "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&order=relevance&q=%s&key=%s" %(title,myTOKEN), 1)
     response = json.loads(content)
     for videoTrack in response.get('items', []):
         if videoTrack['id']['kind'] == "youtube#video":

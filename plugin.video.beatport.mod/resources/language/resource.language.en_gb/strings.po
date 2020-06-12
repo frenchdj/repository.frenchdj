@@ -29,16 +29,24 @@ msgstr ""
 # SETTINGS-CATEGORIES
 
 msgctxt "#30000"
+msgid "API-KEY"
+msgstr ""
+
+msgctxt "#30001"
 msgid "General"
 msgstr ""
 
-msgctxt "#30003"
+msgctxt "#30004"
 msgid "View"
 msgstr ""
 
 
-#empty strings from id 30004 to 30100
+# empty strings from id 30005 to 30100
 # SETTINGS-BUTTONS
+
+msgctxt "#30101"
+msgid "Insert key here:"
+msgstr ""
 
 msgctxt "#30102"
 msgid "[COLOR orangered]Blacklist filter[/COLOR] (seperated by ',')"
@@ -72,36 +80,56 @@ msgctxt "#30109"
 msgid "     Use Addon-Fanart as Background"
 msgstr ""
 
+# empty strings from id 30119 to 30260
 # SETTINGS-TITLES
 
 msgctxt "#30261"
-msgid "[B][COLOR ff0099ff]CACHE[/COLOR][/B]"
-msgstr ""
-
-msgctxt "#30262"
-msgid "[B][COLOR ff0099ff]TITLEINFO[/COLOR][/B]"
+msgid "[B][COLOR ff0099ff]YouTube API Key[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#30263"
-msgid "[B][COLOR ff0099ff]FANART[/COLOR][/B]"
+msgid "[B][COLOR ff0099ff]Cache[/COLOR][/B]"
 msgstr ""
+
+msgctxt "#30264"
+msgid "[B][COLOR ff0099ff]Title Info[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30265"
+msgid "[B][COLOR ff0099ff]Fanart[/COLOR][/B]"
+msgstr ""
+
+msgctxt "#30269"
+msgid "[B][COLOR ff0099ff]Views[/COLOR][/B]"
+msgstr ""
+
+# empty strings from id 30353 to 30500
+# WARNING/INFORMATION-MESSAGES-OK
+
+# empty strings from id 30500 to 30520
+# WARNING/INFORMATION-MESSAGES-NOTIFICATION
+
+# empty strings from id 30520 to 30600
+# PLUGIN-MAIN and SIDEMENU
+# START - FOLDER
+
 
 #empty strings from id 30004 to 30100
 # SETTINGS-BUTTONS
 
-msgctxt "#30116"
+msgctxt "#30115"
 msgid "     Force View"
 msgstr ""
 
-msgctxt "#30117"
+msgctxt "#30116"
 msgid "     ViewID (Genres)"
 msgstr ""
 
-msgctxt "#30118"
+msgctxt "#30117"
 msgid "     ViewID (Playlists)"
 msgstr ""
 
-msgctxt "#30119"
+msgctxt "#30118"
 msgid "     ViewID (Videos)"
 msgstr ""
 
