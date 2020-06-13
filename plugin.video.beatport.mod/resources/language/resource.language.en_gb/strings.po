@@ -1,7 +1,7 @@
 ﻿# Kodi Media Center language file
 # Addon Name: Youtube Music
 # Addon id: plugin.video.beatport.mod
-# Addon version: 1.0
+# Addon version: 2.0
 # Addon Provider: frenchdj
 msgid ""
 msgstr ""
@@ -138,7 +138,7 @@ msgid "[COLOR lime]. [COLOR white]Beatport[/COLOR]"
 msgstr ""
 
 msgctxt "#30635"
-msgid "[COLOR lime][B]BEATPORT [COLOR white]- [COLOR deepskyblue]Top 100[COLOR white] :[/B][/COLOR]"
+msgid "[COLOR lime][B]* Use your Youtube API on the addon settings[/B][/COLOR]"
 msgstr ""
 
 msgctxt "#30801"
