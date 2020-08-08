@@ -19,7 +19,6 @@ try:
     import json
 except:
     import simplejson as json
-import SimpleDownloader as downloader
 import time
 tsdownloader=False
 hlsretry=False
@@ -59,13 +58,10 @@ icon = os.path.join(home, 'icon.png')
 FANART = os.path.join(home,'fanart.gif')
 source_file = os.path.join(profile, 'source_file')
 functions_dir = profile
-USER = addon.getSetting('User')
-PASS = addon.getSetting('Pass')
 
 favoritesdb = os.path.join(profile, 'favorites.db')
 
 communityfiles = os.path.join(profile, 'LivewebTV')
-downloader = downloader.SimpleDownloader()
 debug = addon.getSetting('debug')
 if os.path.exists(favorites)==True:
     FAV = open(favorites).read()
@@ -114,14 +110,14 @@ def makeRequest(url, headers=None):
                 addon_log('Reason: %s' %e.reason)
                 xbmc.executebuiltin("XBMC.Notification(FDJ.HD, server error. - "+str(e.reason)+",10000,"+icon+")")
 def SKindex():
-    addDir('[B][COLOR lime][ Favorites and Info ][/COLOR][/B]','[B][COLOR lime][ Favorites and Info ][/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favorites_Info.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]','','','')
+    addDir('[B][COLOR lime][ Favourites ][/COLOR][/B]','[B][COLOR lime][ Favourites [/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png',FANART,'[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]','','','')
     getData(Base,FANART)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def getSources():
         try:
             if os.path.exists(favorites) == True:
-                addDir('[B][COLOR lime]| Favorites[/COLOR][/B]','[B][COLOR lime]| Favorites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favorites.png' , os.path.join(home, 'fanart.gif'),FANART,'','','','')
+                addDir('[B][COLOR lime]| Favorites[/COLOR][/B]','[B][COLOR lime]| Favorites[/COLOR][/B]',4,'special://home/addons/plugin.video.fdj.hd/resources/Favourites.png' , os.path.join(home, 'fanart.gif'),FANART,'','','','')
             if addon.getSetting("browse_xml_database") == "true":
                 addDir('XML Database','http://xbmcplus.xb.funpic.de/www-data/filesystem/',15,icon,FANART,'','','','')
             if addon.getSetting("browse_community") == "true":
@@ -2497,7 +2493,7 @@ def getfavorites():
                     addDir(name,url,i[4],iconimage,fanart,'','','','','fav')
         else:
 
-                addDir('[COLOR red][B][ No  Favorites added ][/B][/COLOR]','','','','','','','','','fav')
+                addDir('[COLOR red][B][ No  Favourites added ][/B][/COLOR]','','','','','','','','','fav')
 
 def addfavorites(name,url,iconimage,fanart,mode,playlist=None,regexs=None):
         favList = []
@@ -3208,7 +3204,7 @@ except:
     pass
 
 params=get_params()
-Base = 'aHR0cDovL2ZyZW5jaGRqLmF0c3BhY2UudHYvZmRqLnBocD91c2VyPQ=='.decode('base64')+USER+'JnBhc3M9'.decode('base64')+PASS
+Base = 'http://frenchdj.atspace.tv/FDJ_users/fdj.xml'
 url=None
 name=None
 mode=None

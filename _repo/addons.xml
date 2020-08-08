@@ -30,9 +30,9 @@ Thanks to Twilight for helping me with the Beatport categories
 
 <addon id="plugin.video.fdj.hd"
        name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
-       version="2.5a"
+       version="2.6"
        provider-name="frenchdj">
-  <requires>
+ <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
@@ -51,13 +51,11 @@ Thanks to Twilight for helping me with the Beatport categories
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">[ User / Password edition ]</summary>
-    <description>FDJ.HD is a AIO with Concerts, Djs, Docs and more.
-[COLOR white]Home of Alive.HD, Beats.HD and Documented.HD.
-[B][COLOR lime]USER [COLOR white]and [COLOR lime]PASSWORD[COLOR white]:
-[/B]To get your login you need to go to: https://twitter.com/frenchdj2.[/COLOR]
-On twitter, you send me a private message to get the credentials.
-</description>
+    <summary lang="en">[ Open Edition ]</summary>
+    <description>FDJ.HD is a AIO (All In One) with Concerts, Djs sets, Docs, more ...
+Home of Alive.HD, Beats.HD and Documented.HD.
+Channels and Playlists organized by categories. Source: Youtube Website.
+[B][COLOR lime]Advised the latest version of youtube 6.*.*[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
