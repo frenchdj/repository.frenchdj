@@ -60,6 +60,36 @@ Channels and Playlists organized by categories. Source: Youtube Website.
   </extension>
 </addon>
 
+<addon id="plugin.video.fdj.hd.matrix" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="1.0-matrix" provider-name="frenchdj">
+<requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="script.module.requests"/>
+	<import addon="inputstream.adaptive"/>
+    <import addon="script.module.simplejson"/>
+	<import addon="script.module.kodi-six" />
+</requires>
+<extension point="xbmc.python.pluginsource" library="default.py">
+	<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+    <summary lang="en">[ Matrix Lite Edition ]</summary>
+    <description>FDJ.HD is a AIO (All In One) with Concerts, Dj Sets, Docs and more ...
+Home of Alive.HD, Beats.HD and Documented.HD.
+Channels and Playlists organized by categories. Source: Youtube Website.
+[B][COLOR lime]Advised the latest version of youtube 6.*.*+matrix[/B][/COLOR]</description>
+    <platform>all</platform>
+	<assets>
+       <icon>icon.png</icon>
+       <fanart>fanart.jpg</fanart>
+       <screenshot>resources/screenshots/01.jpg</screenshot>
+       <screenshot>resources/screenshots/02.jpg</screenshot>
+       <screenshot>resources/screenshots/03.jpg</screenshot>
+    </assets>
+	<news>
+	</news>
+</extension>
+</addon>
+
 <addon id="plugin.video.mixcloud.mod"
        name="Mixcloud Mod"
        version="1.0"
