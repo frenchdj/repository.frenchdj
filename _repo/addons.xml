@@ -60,11 +60,10 @@ Channels and Playlists organized by categories. Source: Youtube Website.
   </extension>
 </addon>
 
-<addon id="plugin.video.fdj.hd.matrix" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="1.0-matrix" provider-name="frenchdj">
+<addon id="plugin.video.fdj.hd.matrix" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="1.0a-matrix" provider-name="frenchdj">
 <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="script.module.requests"/>
-	<import addon="inputstream.adaptive"/>
     <import addon="script.module.simplejson"/>
 	<import addon="script.module.kodi-six" />
 </requires>
