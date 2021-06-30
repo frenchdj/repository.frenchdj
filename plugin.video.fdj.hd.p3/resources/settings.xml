@@ -1,0 +1,6 @@
+﻿<settings>
+  <category label="General">
+    <setting id="add_playlist" type="bool" label="Add items with multiple links as play lists" default="true"/>
+    <setting id="ask_playlist_items" type="bool" label="Ask playlist items to choose from dialog" default="true" />
+  </category>
+</settings>
