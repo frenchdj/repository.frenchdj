@@ -65,6 +65,7 @@ def addon_log(string, level=xbmc.LOGDEBUG):
 
 
 def makeRequest(url, headers=None):
+   
     try:
         if headers is None:
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 537.40'}
@@ -85,7 +86,7 @@ def makeRequest(url, headers=None):
         req = urllib_request.Request(url, None, headers)
         response = urllib_request.urlopen(req)
         result = response.read()
-
+        
         encoding = None
         content_type = response.headers.get('content-type', '')
         if 'charset=' in content_type:
@@ -1090,6 +1091,7 @@ def getRegexParsed(regexs, url, cookieJar=None, forCookieJarOnly=False, recursiv
                         return cookieJar  # do nothing
                 elif m['page'] and not m['page'].startswith('http'):
                     if m['page'].startswith('$pyFunction:'):
+                        
                         val = doEval(m['page'].split('$pyFunction:')[1], '', cookieJar, m)
                         if forCookieJarOnly:
                             return cookieJar  # do nothing
@@ -1105,14 +1107,17 @@ def getRegexParsed(regexs, url, cookieJar=None, forCookieJarOnly=False, recursiv
 
             if m['expres'] != '':
                 if '$LiveStreamCaptcha' in m['expres']:
+                   
                     val = askCaptcha(m, link, cookieJar)
                     url = url.replace("$doregex[" + k + "]", val)
 
                 elif m['expres'].startswith('$pyFunction:') or '#$pyFunction' in m['expres']:
                     val = ''
                     if m['expres'].startswith('$pyFunction:'):
+                        
                         val = doEval(m['expres'].split('$pyFunction:')[1], link, cookieJar, m)
                     else:
+                       
                         val = doEvalFunction(m['expres'], link, cookieJar, m)
                     
                     if 'ActivateWindow' in m['expres'] or 'RunPlugin' in m['expres']:
@@ -1121,7 +1126,8 @@ def getRegexParsed(regexs, url, cookieJar=None, forCookieJarOnly=False, recursiv
                         return cookieJar  # do nothing
                     if 'listrepeat' in m:
                         listrepeat = m['listrepeat']
-                        return listrepeat, eval(val), m, regexs, cookieJar
+                        
+                        return listrepeat, eval(str(val)), m, regexs, cookieJar
 
                     try:
                         url = url.replace(u"$doregex[" + k + "]", val)
@@ -1137,14 +1143,18 @@ def getRegexParsed(regexs, url, cookieJar=None, forCookieJarOnly=False, recursiv
                     if link != '':
                         reg = re.compile(m['expres']).search(link)
                         if reg:
+                           
                             val = reg.group(1).strip()
 
                     elif m['page'] == '' or m['page'] is None:
+                       
                         val = m['expres']
 
                     if rawPost:
+                        
                         val = urllib_parse.quote_plus(val)
                     if 'htmlunescape' in m:
+                       
                         val = html_parser.HTMLParser().unescape(val)
                     try:
                         url = url.replace("$doregex[" + k + "]", val)
@@ -1575,14 +1585,14 @@ def doEval(fun_call, page_data, Cookie_Jar, m):
 
 
 def doEvalFunction(fun_call, page_data, Cookie_Jar, m):
-    try:
+
         global gLSProDynamicCodeNumber
         gLSProDynamicCodeNumber = gLSProDynamicCodeNumber + 1
         ret_val = ''
 
         if functions_dir not in sys.path:
             sys.path.append(functions_dir)
-
+        fun_call=fun_call.replace(',page_data)',',page_data, flags = re.DOTALL)').replace('(?s)','')
         filename = 'LSProdynamicCode{0}.py'.format(gLSProDynamicCodeNumber)
         filenamewithpath = os.path.join(functions_dir, filename)
         f = open(filenamewithpath, "wb")
@@ -1591,15 +1601,15 @@ def doEvalFunction(fun_call, page_data, Cookie_Jar, m):
         f.close()
 
         LSProdynamicCode = import_by_string(filename.split('.')[0], filenamewithpath)
+        
         ret_val = LSProdynamicCode.GetLSProData(page_data, Cookie_Jar, m)
         try:
             return str(ret_val)
         except:
             return ret_val
-    except:
-        pass
+
         # traceback.print_exc()
-    return ""
+ 
 
 
 def import_by_string(full_name, filenamewithpath):

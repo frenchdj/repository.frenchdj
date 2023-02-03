@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.fdj.hd.p3" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="3.0" provider-name="frenchdj">
+<addon id="plugin.video.fdj.hd.p3" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="3.1" provider-name="frenchdj">
 	<requires>
 		<import addon="script.module.six" />
 		<import addon="script.module.kodi-six" />
