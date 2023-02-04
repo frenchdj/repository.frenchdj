@@ -1582,7 +1582,7 @@ def doEvalFunction(fun_call, page_data, Cookie_Jar, m):
 
         if functions_dir not in sys.path:
             sys.path.append(functions_dir)
-
+        fun_call=fun_call.replace(',page_data)',',page_data, flags = re.DOTALL)').replace('(?s)','')
         filename = 'LSProdynamicCode{0}.py'.format(gLSProDynamicCodeNumber)
         filenamewithpath = os.path.join(functions_dir, filename)
         f = open(filenamewithpath, "wb")

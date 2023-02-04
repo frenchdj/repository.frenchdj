@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.beats.hd.records" name="[COLOR white][B]Beats HD[COLOR lime].[COLOR white]Records [/B][/COLOR]" version="1.0" provider-name="frenchdj">
+<addon id="plugin.video.beats.hd.records" name="[COLOR white][B]Beats HD[COLOR lime].[COLOR white]Records [/B][/COLOR]" version="1.1" provider-name="frenchdj">
 	<requires>
 		<import addon="script.module.six" />
 		<import addon="script.module.kodi-six" />
