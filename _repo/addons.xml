@@ -36,38 +36,6 @@ www.facebook.com/Beats.HD.Records/  [/COLOR]
 	</extension>
 </addon>
 
-<addon id="plugin.video.fdj.hd"
-       name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]"
-       version="2.6"
-       provider-name="frenchdj">
- <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.resolveurl" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.module.livestreamer" optional="true"/>
-    <import addon="script.module.slproxy" optional="true"/>
-    <import addon="script.module.pyamf" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">[ Open Edition ]</summary>
-    <description>FDJ.HD is a AIO (All In One) with Concerts, Djs sets, Docs, more ...
-Home of Alive.HD, Beats.HD and Documented.HD.
-Channels and Playlists organized by categories. Source: Youtube Website.
-[B][COLOR lime]Advised the latest version of youtube 6.*.*[/B][/COLOR]</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.fdj.hd.p3" name="[COLOR white][B]FDJ[COLOR lime].[COLOR white]HD[/B][/COLOR]" version="3.1" provider-name="frenchdj">
 	<requires>
 		<import addon="script.module.six" />
